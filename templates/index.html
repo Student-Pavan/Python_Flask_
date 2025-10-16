@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Flask Basic Concepts{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Welcome to Flask!</h1>
+    <p>This is a basic Flask application demonstrating core concepts.</p>
+    
+    <div class="features">
+        <h2>Key Features:</h2>
+        <ul>
+            <li>Routing with multiple endpoints</li>
+            <li>Template inheritance using Jinja2</li>
+            <li>Static file serving (CSS)</li>
+            <li>RESTful API endpoint at <code>/api/hello</code></li>
+        </ul>
+    </div>
+    
+    <div class="api-test">
+        <h2>Test API Endpoint:</h2>
+        <button id="testApi">Test API</button>
+        <pre id="apiResponse"></pre>
+    </div>
+</div>
+
+<script>
+document.getElementById('testApi').addEventListener('click', async () => {
+    const response = await fetch('/api/hello');
+    const data = await response.json();
+    document.getElementById('apiResponse').textContent = JSON.stringify(data, null, 2);
+});
+</script>
+{% endblock %}
